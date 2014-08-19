@@ -20,7 +20,7 @@ Within Schema Form, pickadate only supports dates - not times.
 Installation
 ------------
 The date picker is an add-on to the Bootstrap decorator. To use it, just include
-`dist/bootstrap-datepicker.min.js` *after* `dist/bootstrap-decorator.min.js`.
+`bootstrap-datepicker.min.js` *after* `bootstrap-decorator.min.js`.
 
 You'll need to load a few additional files to use pickadate:
 
