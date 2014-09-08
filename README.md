@@ -52,12 +52,13 @@ mapping.
 
 Form Type Options
 -------
-The `datepicker` form type takes two options: `minDate` and `maxDate`. `minDate` and `maxDate` both
-accept one of the following as values:
+The `datepicker` form type takes two date range options: `minDate` and `maxDate`. `minDate` and `maxDate` both accept one of the following as values:
 
 1. A string in the format `yyyy-mm-dd`,
 2. A unix timestamp (as a Number), or
 3. An instance of `Date`
+
+It is also possible to set the date format using the `format` option, which is used to format the date stored by angularjs.
 
 Here's an example:
 
@@ -65,6 +66,7 @@ Here's an example:
 {
   key: "birthDate",
   minDate: "1900-01-01",
-  maxDate: new Date()
+  maxDate: new Date(),
+  format: "YYYY-MM-DD"
 }
 ```
