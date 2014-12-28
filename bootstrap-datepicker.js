@@ -34,7 +34,9 @@ angular.module('schemaForm').directive('pickADate', function () {
         onClose: function () {
           element.blur();
         },
-        formatSubmit: null
+        formatSubmit: null,
+        selectYears: 100,
+        selectMonths: true
       });
 
       //Defaultformat is for json schema date-time is ISO8601
