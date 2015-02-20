@@ -22,7 +22,7 @@ Installation
 The date picker is an add-on to the Bootstrap decorator. To use it, just include
 `bootstrap-datepicker.min.js` *after* `bootstrap-decorator.min.js`.
 
-You'll need to load a few additional files to use pickadate:
+You'll need to load a few additional files to use pickadate **in this order**:
 
 1. jQuery (pickadate depends on it)
 2. The pickadate source files (see the pickadate.js
