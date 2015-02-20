@@ -21,6 +21,8 @@ angular.module('schemaForm').directive('pickADate', function () {
       format: '='
     },
     link: function (scope, element, attrs, ngModel) {
+      element = jQuery(element);
+
       //Bail out gracefully if pickadate is not loaded.
       if (!element.pickadate) {
         return;
