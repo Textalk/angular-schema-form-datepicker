@@ -83,7 +83,12 @@ scope.form = [
     "key": "birthDate",
     "minDate": "1995-09-01",
     "maxDate": new Date(),
-    "format": "yyyy-mm-dd"
+    "pickerOption": {
+      "format":"yyyy-mm-dd",
+      "onSet":function(){
+          //do sth
+      }
+    }
   }
 ]
 ```
