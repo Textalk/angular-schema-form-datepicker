@@ -43,11 +43,13 @@ mapping.
 |  Form Type     |   Becomes    |
 |:---------------|:------------:|
 |  datepicker    |  a pickadate widget |
+|  timepicker    |  a pickatime widget | 
 
 
 | Schema             |   Default Form type  |
 |:-------------------|:------------:|
 | "type": "string" and "format": "date"   |   datepicker   |
+| "type": "string" and "format": "time"   |   timepicker   |
 
 
 Form Type Options
