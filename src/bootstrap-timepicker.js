@@ -1,4 +1,4 @@
-angular.module('schemaForm').config(
+angular.module('schemaForm-timepicker', ['schemaForm', 'pickadate']).config(
 ['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfPathProvider',
   function(schemaFormProvider,  schemaFormDecoratorsProvider, sfPathProvider) {
 
