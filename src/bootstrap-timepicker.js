@@ -1,33 +1,33 @@
-angular.module('schemaForm-datepicker', ['schemaForm', 'pickadate']).config(
+angular.module('schemaForm-timepicker', ['schemaForm', 'pickadate']).config(
 ['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfPathProvider',
   function(schemaFormProvider,  schemaFormDecoratorsProvider, sfPathProvider) {
 
-    var datepicker = function(name, schema, options) {
-      if (schema.type === 'string' && (schema.format === 'date' || schema.format === 'date-time')) {
+    var timepicker = function(name, schema, options) {
+      if (schema.type === 'string' && schema.format === 'time') {
         var f = schemaFormProvider.stdFormObj(name, schema, options);
         f.key  = options.path;
-        f.type = 'datepicker';
+        f.type = 'timepicker';
         f.pickerOption = f.pickerOption || {};
         if (f.onChange) {
           f.pickerOption.onSet = f.onChange;
         }
-        f.pickerOption.format = f.pickerOption.format || 'yyyy-mm-dd';
+        f.pickerOption.format = f.pickerOption.format || 'HH:i';
         options.lookup[sfPathProvider.stringify(options.path)] = f;
         return f;
       }
     };
 
-    schemaFormProvider.defaults.string.unshift(datepicker);
+    schemaFormProvider.defaults.string.unshift(timepicker);
 
     //Add to the bootstrap directive
     schemaFormDecoratorsProvider.addMapping(
       'bootstrapDecorator',
-      'datepicker',
-      'directives/decorators/bootstrap/datepicker/datepicker.html'
+      'timepicker',
+      'directives/decorators/bootstrap/datepicker/timepicker.html'
     );
     schemaFormDecoratorsProvider.createDirective(
-      'datepicker',
-      'directives/decorators/bootstrap/datepicker/datepicker.html'
+      'timepicker',
+      'directives/decorators/bootstrap/datepicker/timepicker.html'
     );
   }
 ]);
