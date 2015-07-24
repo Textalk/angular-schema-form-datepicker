@@ -43,11 +43,13 @@ mapping.
 |  Form Type     |   Becomes    |
 |:---------------|:------------:|
 |  datepicker    |  a pickadate widget |
+|  timepicker    |  a pickatime widget | 
 
 
 | Schema             |   Default Form type  |
 |:-------------------|:------------:|
 | "type": "string" and "format": "date"   |   datepicker   |
+| "type": "string" and "format": "time"   |   timepicker   |
 
 
 Form Type Options
@@ -81,7 +83,12 @@ scope.form = [
     "key": "birthDate",
     "minDate": "1995-09-01",
     "maxDate": new Date(),
-    "format": "yyyy-mm-dd"
+    "pickerOption": {
+      "format":"yyyy-mm-dd",
+      "onSet":function(){
+          //do sth
+      }
+    }
   }
 ]
 ```
