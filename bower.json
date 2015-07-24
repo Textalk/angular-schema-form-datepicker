@@ -1,5 +1,5 @@
 {
-  "name": "angular-schema-form-datepicker2",
+  "name": "angular-schema-form-datepicker",
   "main": [
     "bootstrap-datepicker.min.js"
   ],
