@@ -9,6 +9,11 @@ angular.module('schemaForm-datepicker', ['schemaForm', 'pickadate']).config(
         var f = schemaFormProvider.stdFormObj(name, schema, options);
         f.key  = options.path;
         f.type = 'datepicker';
+        f.pickerOption = f.pickerOption || {};
+        if (f.onChange) {
+          f.pickerOption.onSet = f.onChange;
+        }
+        f.pickerOption.format = f.pickerOption.format || 'yyyy-mm-dd';
         options.lookup[sfPathProvider.stringify(options.path)] = f;
         return f;
       }
@@ -38,6 +43,11 @@ angular.module('schemaForm-timepicker', ['schemaForm', 'pickadate']).config(
         var f = schemaFormProvider.stdFormObj(name, schema, options);
         f.key  = options.path;
         f.type = 'timepicker';
+        f.pickerOption = f.pickerOption || {};
+        if (f.onChange) {
+          f.pickerOption.onSet = f.onChange;
+        }
+        f.pickerOption.format = f.pickerOption.format || 'HH:i';
         options.lookup[sfPathProvider.stringify(options.path)] = f;
         return f;
       }
