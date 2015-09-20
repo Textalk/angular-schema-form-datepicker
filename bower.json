@@ -28,7 +28,7 @@
     "coverage"
   ],
   "dependencies": {
-    "pickadate": "~3.5.3"
+    "pickadate": "https://github.com/AddJam/pickadate.js/tarball/2343dce1ff45fdd6a99743608266c39e5a9a16a4"
   },
   "devDependencies": {
     "angular-schema-form": ">= 0.7",
