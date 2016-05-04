@@ -1,5 +1,5 @@
-angular.module("schemaForm").run(["$templateCache", function($templateCache) {$templateCache.put("directives/decorators/bootstrap/datepicker/datepicker.html","<div class=\"form-group {{form.htmlClass}}\" ng-class=\"{\'has-error\': hasError()}\">\n  <label class=\"control-label\" ng-show=\"showTitle()\">{{form.title}}</label>\n  <div ng-class=\"{\'input-group\': (form.fieldAddonLeft || form.fieldAddonRight)}\">\n    <span ng-if=\"form.fieldAddonLeft\"\n          class=\"input-group-addon\"\n          ng-bind-html=\"form.fieldAddonLeft\"></span>\n    <input ng-show=\"form.key\"\n           style=\"background-color: white\"\n           type=\"text\"\n           class=\"form-control {{form.fieldHtmlClass}}\"\n           schema-validate=\"form\"\n           ng-model=\"$$value$$\"\n           ng-disabled=\"form.readonly\"\n           pick-a-date=\"form.pickadate\"\n           min-date=\"form.minDate\"\n           max-date=\"form.maxDate\"\n           name=\"{{form.key.slice(-1)[0]}}\"\n           format=\"form.format\" />\n    <span ng-if=\"form.fieldAddonRight\"\n          class=\"input-group-addon\"\n          ng-bind-html=\"form.fieldAddonRight\"></span>\n  </div>\n  <span class=\"help-block\">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>\n</div>\n");}]);
-angular.module('schemaForm').directive('pickADate', function () {
+angular.module("schemaForm").run(["$templateCache", function($templateCache) {$templateCache.put("directives/decorators/bootstrap/datepicker/datepicker.html","<div class=\"form-group {{form.htmlClass}}\" ng-class=\"{\'has-error\': hasError()}\">\n  <label class=\"control-label\" ng-show=\"showTitle()\">{{form.title}}</label>\n  <div ng-class=\"{\'input-group\': (form.fieldAddonLeft || form.fieldAddonRight)}\">\n    <span ng-if=\"form.fieldAddonLeft\"\n          class=\"input-group-addon\"\n          ng-bind-html=\"form.fieldAddonLeft\"></span>\n    <input ng-show=\"form.key\"\n           style=\"background-color: white\"\n           type=\"text\"\n           class=\"form-control {{form.fieldHtmlClass}}\"\n           schema-validate=\"form\"\n           ng-model=\"$$value$$\"\n           ng-disabled=\"form.readonly\"\n           pick-a-date=\"form.pickadate\"\n           min-date=\"form.minDate\"\n           max-date=\"form.maxDate\"\n           select-years=\"form.selectYears\"\n           select-months=\"form.selectMonths\"\n           name=\"{{form.key.slice(-1)[0]}}\"\n           format=\"form.format\" />\n    <span ng-if=\"form.fieldAddonRight\"\n          class=\"input-group-addon\"\n          ng-bind-html=\"form.fieldAddonRight\"></span>\n  </div>\n  <span class=\"help-block\">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>\n</div>\n");}]);
+angular.module('schemaForm').directive('pickADate', function() {
 
   //String dates for min and max is not supported
   //https://github.com/amsul/pickadate.js/issues/439
@@ -20,9 +20,11 @@ angular.module('schemaForm').directive('pickADate', function () {
       pickADate: '=',
       minDate: '=',
       maxDate: '=',
-      format: '='
+      format: '=',
+      selectYears: '=?',
+      selectMonths: '=?'
     },
-    link: function (scope, element, attrs, ngModel) {
+    link: function(scope, element, attrs, ngModel) {
       //Bail out gracefully if pickadate is not loaded.
       if (!element.pickadate) {
         return;
@@ -32,10 +34,12 @@ angular.module('schemaForm').directive('pickADate', function () {
       //hidden field that pickadate likes to create.
       //We use ngModel formatters instead to format the value.
       var opts = {
-        onClose: function () {
+        onClose: function() {
           element.blur();
         },
-        formatSubmit: null
+        formatSubmit: null,
+        selectYears: (scope.selectYears || false),
+        selectMonths: (scope.selectMonths || false)
       };
       if (scope.pickADate) {
         angular.extend(opts, scope.pickADate);
@@ -72,7 +76,7 @@ angular.module('schemaForm').directive('pickADate', function () {
 
       //bind once.
       if (angular.isDefined(attrs.minDate)) {
-        var onceMin = scope.$watch('minDate', function (value) {
+        var onceMin = scope.$watch('minDate', function(value) {
           if (value) {
             picker.set('min', formatDate(value));
             onceMin();
@@ -81,7 +85,7 @@ angular.module('schemaForm').directive('pickADate', function () {
       }
 
       if (angular.isDefined(attrs.maxDate)) {
-        var onceMax = scope.$watch('maxDate', function (value) {
+        var onceMax = scope.$watch('maxDate', function(value) {
           if (value) {
             picker.set('max', formatDate(value));
             onceMax();

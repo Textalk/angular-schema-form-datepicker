@@ -1,4 +1,4 @@
-angular.module('schemaForm').directive('pickADate', function () {
+angular.module('schemaForm').directive('pickADate', function() {
 
   //String dates for min and max is not supported
   //https://github.com/amsul/pickadate.js/issues/439
@@ -19,9 +19,11 @@ angular.module('schemaForm').directive('pickADate', function () {
       pickADate: '=',
       minDate: '=',
       maxDate: '=',
-      format: '='
+      format: '=',
+      selectYears: '=?',
+      selectMonths: '=?'
     },
-    link: function (scope, element, attrs, ngModel) {
+    link: function(scope, element, attrs, ngModel) {
       //Bail out gracefully if pickadate is not loaded.
       if (!element.pickadate) {
         return;
@@ -31,10 +33,12 @@ angular.module('schemaForm').directive('pickADate', function () {
       //hidden field that pickadate likes to create.
       //We use ngModel formatters instead to format the value.
       var opts = {
-        onClose: function () {
+        onClose: function() {
           element.blur();
         },
-        formatSubmit: null
+        formatSubmit: null,
+        selectYears: (scope.selectYears || false),
+        selectMonths: (scope.selectMonths || false)
       };
       if (scope.pickADate) {
         angular.extend(opts, scope.pickADate);
@@ -71,7 +75,7 @@ angular.module('schemaForm').directive('pickADate', function () {
 
       //bind once.
       if (angular.isDefined(attrs.minDate)) {
-        var onceMin = scope.$watch('minDate', function (value) {
+        var onceMin = scope.$watch('minDate', function(value) {
           if (value) {
             picker.set('min', formatDate(value));
             onceMin();
@@ -80,7 +84,7 @@ angular.module('schemaForm').directive('pickADate', function () {
       }
 
       if (angular.isDefined(attrs.maxDate)) {
-        var onceMax = scope.$watch('maxDate', function (value) {
+        var onceMax = scope.$watch('maxDate', function(value) {
           if (value) {
             picker.set('max', formatDate(value));
             onceMax();
