@@ -1,5 +1,5 @@
 <div class="form-group {{form.htmlClass}}" ng-class="{'has-error': hasError()}">
-  <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
+  <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
   <div ng-class="{'input-group': (form.fieldAddonLeft || form.fieldAddonRight)}">
     <span ng-if="form.fieldAddonLeft"
           class="input-group-addon"
