@@ -1,6 +1,6 @@
 angular.module('schemaForm').config(
-['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfPathProvider',
-  function(schemaFormProvider,  schemaFormDecoratorsProvider, sfPathProvider) {
+['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfPathProvider', 'sfBuilderProvider',
+  function(schemaFormProvider,  schemaFormDecoratorsProvider, sfPathProvider, sfBuilderProvider) {
 
     var datepicker = function(name, schema, options) {
       if (schema.type === 'string' && (schema.format === 'date' || schema.format === 'date-time')) {
@@ -15,14 +15,11 @@ angular.module('schemaForm').config(
     schemaFormProvider.defaults.string.unshift(datepicker);
 
     //Add to the bootstrap directive
-    schemaFormDecoratorsProvider.addMapping(
+    schemaFormDecoratorsProvider.defineAddOn(
       'bootstrapDecorator',
       'datepicker',
-      'directives/decorators/bootstrap/datepicker/datepicker.html'
-    );
-    schemaFormDecoratorsProvider.createDirective(
-      'datepicker',
-      'directives/decorators/bootstrap/datepicker/datepicker.html'
+      'directives/decorators/bootstrap/datepicker/datepicker.html',
+      sfBuilderProvider.stdBuilders
     );
   }
 ]);

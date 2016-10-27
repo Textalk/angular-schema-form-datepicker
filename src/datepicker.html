@@ -1,14 +1,14 @@
 <div class="form-group {{form.htmlClass}}" ng-class="{'has-error': hasError()}">
-  <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
+  <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
   <div ng-class="{'input-group': (form.fieldAddonLeft || form.fieldAddonRight)}">
     <span ng-if="form.fieldAddonLeft"
           class="input-group-addon"
           ng-bind-html="form.fieldAddonLeft"></span>
-    <input ng-show="form.key"
+    <input id="{{form.key.slice(-1)[0]}}"
+           ng-show="form.key"
            type="text"
            class="form-control {{form.fieldHtmlClass}}"
            schema-validate="form"
-           ng-model="$$value$$"
            ng-disabled="form.readonly"
            pick-a-date="form.pickadate"
            min-date="form.minDate"
@@ -16,7 +16,8 @@
            select-years="form.selectYears"
            select-months="form.selectMonths"
            name="{{form.key.slice(-1)[0]}}"
-           format="form.format" />
+           format="form.format"
+           sf-field-model />
     <span ng-if="form.fieldAddonRight"
           class="input-group-addon"
           ng-bind-html="form.fieldAddonRight"></span>
