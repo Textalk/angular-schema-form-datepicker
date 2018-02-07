@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 
 var templateCache = require('gulp-angular-templatecache');
-var minifyHtml = require('gulp-minify-html');
+var minifyHtml = require('gulp-htmlmin');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var streamqueue = require('streamqueue');
