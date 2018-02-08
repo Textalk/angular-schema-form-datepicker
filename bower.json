@@ -1,7 +1,7 @@
 {
   "name": "angular-schema-form-datepicker",
   "main": [
-    "bootstrap-datepicker.min.js"
+    "bootstrap-datepicker.js"
   ],
   "version": "0.4.2",
   "authors": [
