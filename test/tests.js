@@ -49,10 +49,10 @@ describe('Schema form', function() {
         $compile(tmpl)(scope);
         $rootScope.$apply();
         tmpl.children().length.should.be.equal(1);
-        tmpl.children().eq(0).children().eq(0).is('div').should.be.true;
-        tmpl.children().eq(0).children().eq(0).find('input[pick-a-date]').length.should.ok;
-        tmpl.children().eq(0).children().eq(0).find('input[pick-a-date]').attr('max-date').should.be.ok;
-        tmpl.children().eq(0).children().eq(0).find('input[pick-a-date]').attr('min-date').should.be.ok;
+        tmpl.children().eq(0).is('div').should.be.true;
+        tmpl.children().eq(0).find('input[pick-a-date]').length.should.be.equal(1);
+        tmpl.children().eq(0).find('input[pick-a-date]').attr('max-date').should.be.ok;
+        tmpl.children().eq(0).find('input[pick-a-date]').attr('min-date').should.be.ok;
 
         $.fn.pickadate.should.have.beenCalled;
 
@@ -96,7 +96,7 @@ describe('Schema form', function() {
 
         $compile(tmpl)(scope);
         $rootScope.$apply();
-        tmpl.children().eq(0).children().eq(0).find('input[pick-a-date]').attr('disabled').should.ok;
+        tmpl.children().eq(0).find('input[pick-a-date]').attr('disabled').should.ok;
 
         $.fn.pickadate.should.have.beenCalled;
 
